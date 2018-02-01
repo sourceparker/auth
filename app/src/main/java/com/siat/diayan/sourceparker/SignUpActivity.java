@@ -1,5 +1,6 @@
 package com.siat.diayan.sourceparker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -59,7 +60,9 @@ public class SignUpActivity extends AppCompatActivity {
                 if (firebaseAuth.getCurrentUser() != null) {
                     Toast.makeText(SignUpActivity.this, "authentication success", Toast.LENGTH_SHORT).show();
 
-                    //next activity comes here
+//                    next activity comes here
+                    Intent intent = new Intent(SignUpActivity.this, MapsActivity.class);
+                    startActivity(intent);
 
                 }
             }
@@ -77,9 +80,6 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        mAuth.addAuthStateListener(mAuthStateListener);
     }
 
     private void startSignUp() {
@@ -106,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
                         mDatabaseReference = mDatabase.getReference();
                         userDetails = new User(edtFirstName.getText().toString(), edtLastName.getText().toString(),
                                 edtEmail.getText().toString(), editPassword.getText().toString(),
-                                edtPhoneNumber.getText().toString(), userDetails.getIsUser());
+                                edtPhoneNumber.getText().toString());
                         mDatabaseReference.child("User")
                                 .push().setValue(userDetails);
 
@@ -114,13 +114,15 @@ public class SignUpActivity extends AppCompatActivity {
                         edtLastName.setText("");
                         edtEmail.setText("");
                         editPassword.setText("");
-
                         edtPhoneNumber.setText("");
 
                         //
                         Log.d(TAG, "createUserWithEmail:success");
                         Toast.makeText(SignUpActivity.this, "Sign up success", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = mAuth.getCurrentUser();
+
+
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.getException());

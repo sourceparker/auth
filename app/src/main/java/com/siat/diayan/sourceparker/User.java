@@ -14,13 +14,12 @@ public class User {
     private String phoneNumber;
     private boolean isUser;
     private boolean isManager;
-    private boolean isOwner;
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, boolean isUser) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -61,14 +60,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean getIsUser() {
-        return isUser;
-    }
-
-    public void setIsUser(boolean isUser) {
-        this.isUser = isUser;
     }
 
 

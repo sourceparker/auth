@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editemail"
+            android:id="@+id/edtmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="232dp"
@@ -37,9 +37,9 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="@+id/editemail"
-            app:layout_constraintStart_toStartOf="@+id/editemail"
-            app:layout_constraintTop_toBottomOf="@+id/editemail"/>
+            app:layout_constraintEnd_toEndOf="@+id/edtmail"
+            app:layout_constraintStart_toStartOf="@+id/edtmail"
+            app:layout_constraintTop_toBottomOf="@+id/edtmail"/>
 
         <Button
             android:id="@+id/btnSignIn"

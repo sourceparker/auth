@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //make instances of widgets
-        mEditEmail = findViewById(R.id.editEmail);
+        mEditEmail = findViewById(R.id.edtmail);
         mEditPassword = findViewById(R.id.editpassword);
         mSignIn = findViewById(R.id.btnSignIn);
         register = findViewById(R.id.btnRegister);
@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startSignIn();
+                //                    next activity must start from here
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -69,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 if (firebaseAuth.getCurrentUser() != null) {
                     Toast.makeText(MainActivity.this, "authentication success", Toast.LENGTH_SHORT).show();
 
-                    //next activity must start from here
+//                    next activity must start from here
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    startActivity(intent);
                 }
             }
         };
@@ -79,12 +84,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthStateListener);
     }
 
     //implementing method startSignIn() to handle sign in and authentication of the app
     private void startSignIn() {
-        try {
 
             String email = mEditEmail.getText().toString();
             String password = mEditPassword.getText().toString();
@@ -100,7 +103,11 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
+
+                            mEditEmail.setText("");
+                            mEditPassword.setText("");
                             //for trial
+
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -111,16 +118,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-
-
-        } catch (Exception e)
-
-        {
-            // e.printStackTrace();
-            Toast.makeText(MainActivity.this, "Authentication failed. Please try again later",
-                    Toast.LENGTH_LONG).show();
-            ;
-        }
     }
 
 }
